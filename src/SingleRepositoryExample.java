@@ -1,11 +1,12 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class SingleRepositoryExample {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         System.out.println("Welcome to Single Repository Access Dictionary");
         System.out.println("Server is going to start");
-        SingleRepositoryDictionaryServer singleRepositoryDictionaryServer = new SingleRepositoryDictionaryServer();
+        SingleRepositoryDictionaryServer singleRepositoryDictionaryServer = new SingleRepositoryDictionaryServer("s1", 4555);
         singleRepositoryDictionaryServer.start();
         Thread.sleep(500);
         System.out.println("Type and Press exit to stop the server");

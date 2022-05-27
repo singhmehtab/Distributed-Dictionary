@@ -5,17 +5,19 @@ import java.util.ArrayList;
 
 public class SingleRepositoryDictionaryServer extends Thread{
 
-    private ServerSocket serverSocket;
-    private boolean stop;
-    private ArrayList<RepositoryAccessProtocol> threadArrayList;
-    private Dictionary dictionary;
+    protected ServerSocket serverSocket;
+    protected boolean stop;
+    protected ArrayList<RepositoryAccessProtocol> threadArrayList;
+    protected Dictionary dictionary;
+    protected String myName;
 
-    public SingleRepositoryDictionaryServer(){
+    public SingleRepositoryDictionaryServer(String myName, int port){
         try {
-            this.serverSocket = new ServerSocket(4555);
+            this.serverSocket = new ServerSocket(port);
             stop = false;
             this.threadArrayList = new ArrayList<>();
             this.dictionary = new Dictionary();
+            this.myName = myName;
         } catch (IOException e) {
             System.out.println("Server Socket not Initialized");
             e.printStackTrace();
