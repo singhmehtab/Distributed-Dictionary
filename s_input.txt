@@ -1,0 +1,9 @@
+SET a 12
+GET VALUE a
+Add a 13
+GET VALUES a
+LIST KEYS
+SUM a
+MAX a
+DELETE a
+

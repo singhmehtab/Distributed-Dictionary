@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Dictionary {
 
@@ -32,8 +33,14 @@ public class Dictionary {
         dictionary.remove(key);
     }
 
-    public Set<String> listKeys(){
-        return dictionary.keySet();
+    public String listKeys(){
+        StringBuilder sb = new StringBuilder();
+        ArrayList<String> list = new ArrayList<String>(dictionary.keySet());
+        sb.append(list.get(0));
+        for(int i=1;i<list.size();i++){
+            sb.append(",").append(list.get(i));
+        }
+        return sb.toString();
     }
 
     public String getValue(String key){

@@ -1,0 +1,12 @@
+SET a 12
+GET VALUE a
+SET Cat.a 13
+SET Charlie.a 14
+DSUM a INCLUDING Cat Charlie
+DMAX a INCLUDING Cat Charlie
+ADD a 15
+DSUM a INCLUDING Cat Charlie
+DMAX a INCLUDING Cat Charlie
+GET VALUES a
+ADD Cat.a 17
+GET Cat.VALUES a

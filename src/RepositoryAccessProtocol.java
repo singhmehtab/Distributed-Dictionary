@@ -2,21 +2,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
-import java.util.Set;
 
 public class RepositoryAccessProtocol extends Thread{
 
-    private Dictionary dictionary;
-    private boolean stop = false;
-    private Socket socket;
-    private Scanner scanner;
-    private PrintWriter printWriter;
-    private String connectionName;
+    protected Dictionary dictionary;
+    protected boolean stop = false;
+    protected Socket socket;
+    protected Scanner scanner;
+    protected PrintWriter printWriter;
+    protected String connectionName;
 
     public RepositoryAccessProtocol(Dictionary dictionary, Socket socket, String connectionName){
         this.dictionary = dictionary;
         this.socket = socket;
         this.connectionName = connectionName;
+        Socket s = new Socket();
         try {
             scanner = new Scanner(socket.getInputStream());
             printWriter = new PrintWriter(socket.getOutputStream());
@@ -58,10 +58,9 @@ public class RepositoryAccessProtocol extends Thread{
                }
                case "LIST":{
                    if(!strings[1].equals("KEYS")){ printWriter.println(getCommandInvalidText());printWriter.flush();continue;}
-                   Set<String> keys = dictionary.listKeys();
-                   for(String s : keys){
-                       printWriter.println(s);
-                   }
+                   String keys = dictionary.listKeys();
+                   printWriter.println(keys);
+
                    printWriter.flush();
                    break;
                }
@@ -112,7 +111,7 @@ public class RepositoryAccessProtocol extends Thread{
         this.stop = flag;
     }
 
-    private String getCommandInvalidText(){
+    protected String getCommandInvalidText(){
         return "Command format not valid";
     }
 
